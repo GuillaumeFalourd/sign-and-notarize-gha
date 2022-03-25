@@ -9,9 +9,9 @@ Repository explaining step by step how to sign and notarize packages with Apple 
 - A Developer Id **Application** certificate.
 - A repository on Github Action with the code you want to build and distribute through a package.
 
-## Explaination
+## Explanation
 
-First, it's worth highlighting the reason why 2 certificates are needed.
+**First, it's worth highlighting the reason why 2 certificates are needed.**
 
 - The `Developer Id Installer` certificate is used to sign your application/software **package** for distribution **outside the Mac Apple Store**.
 
@@ -21,8 +21,17 @@ Basically, if you just sign the installation **package**, without signing the co
 
 _In short: The Developer Id Application will be used to sign the code, and the Developer Id Installer will be used to sign the package. It takes all 2 to get through Apple's notarization flow._
 
+**Second, why is it necessary to notarize your packages?**
+
+Notarization gives users more confidence that the Developer ID-signed software you distribute has been checked by Apple for malicious components. Notarization is not App Review. The Apple notary service is an automated system that scans your software for malicious content, checks for code-signing issues, and returns the results to you quickly.
+
+Beginning in macOS 10.14.5, software signed with a new Developer ID certificate and all new or updated kernel extensions **must be notarized to run**. Beginning in macOS 10.15, all software built after June 1, 2019, and distributed with Developer ID must be notarized. 
+
+_Note that you aren’t required to notarize software that you distribute through the Mac App Store because the App Store submission process already includes equivalent security checks._
+
 ## Useful references
 
+- [Notarizing macOS Software Before Distribution](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
 - [Step by step to install an Apple certificate on a macOs runner (Github Actions)](https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development)
 - [Script to sign each file inside a folder](https://gist.github.com/GuillaumeFalourd/4efc73f1a6014b791c0ef223a023520a)
 - [Script to generate a macos package](https://github.com/KosalaHerath/macos-installer-builder/tree/master/macOS-x64)
