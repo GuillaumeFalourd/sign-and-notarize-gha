@@ -95,10 +95,12 @@ jobs:
   [...] # Next job to distribute the package
 ```
 
-Note that in this workflow example: 
+**Note that in this workflow example:**
+
 - the `secrets.P12_PASSWORD` and the `secrets.KEYCHAIN_PASSWORD` can use any value (it would be different for the `P12_PASSWORD` value if you added directly the `.p12` file content as a base64 secret).
 - the `secrets.KEY_PASSWORD` isn't mandatory (it may depends on the `.key` file).
 - the `Developer Id certificates name` looks like this: `Org or User name (xxxxxxxxxx)`.
+- the `BUNDLE_ID` can be any value.
 
 ## 🤝 Contribution
 
