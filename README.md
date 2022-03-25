@@ -112,3 +112,5 @@ Would like to contribute to the repository? Here are the [guidelines](CONTRIBUTI
 </a>
 
 (Made with [contributors-img](https://contrib.rocks)) -->
+
+#### If you have any question, feel free to open an issue, I'll try to help 🙂
