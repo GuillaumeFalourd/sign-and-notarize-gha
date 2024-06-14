@@ -48,10 +48,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: "Download macos bin file"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: macos-bin-files
           path: dist/
@@ -102,6 +102,31 @@ jobs:
               product-path: $PATH_TO_PKG
   
   [...] # Next job to distribute the package
+```
+
+**NOTE:** Notary tools have been updated on Apple. Previously the action below was used in the process but has been removed from the marketplace:
+
+```
+- name: "Notarize Release Build PKG"
+  uses: devbotsxyz/xcode-notarize@v1 
+  with:
+   product-path: $PATH_TO_PKG
+   appstore-connect-username: ${{ secrets.APPLE_ACCOUNT_USERNAME }}
+   appstore-connect-password: ${{ secrets.APPLE_ACCOUNT_PASSWORD }}
+   primary-bundle-id: 'BUNDLE_ID'
+```
+
+I created [this one](https://github.com/GuillaumeFalourd/notary-tools) to substitute the notarize and staple actions:
+```
+- name: "Notarize and Staple Release Build"
+  uses: GuillaumeFalourd/notary-tools@v1
+  with:
+    product_path: "$PATH_TO_PKG_OR_APP"
+    apple_id: ${{ secrets.NOTARIZATION_USERNAME }}
+    password: ${{ secrets.NOTARIZATION_PASSWORD }}
+    team_id: ${{ secrets.NOTARIZATION_TEAMID }}
+    staple: true
+    xcode_path: '/Applications/Xcode.app'
 ```
 
 **Note that in this workflow example:**
