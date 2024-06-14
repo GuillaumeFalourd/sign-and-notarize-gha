@@ -104,7 +104,16 @@ jobs:
   [...] # Next job to distribute the package
 ```
 
-**NOTE:** Notary tools have been updated on Apple. Previously the action below was used in the process but has been removed from the marketplace:
+**Note that in this workflow example:**
+
+- the `secrets.P12_PASSWORD` and the `secrets.KEYCHAIN_PASSWORD` can use any value (it would be different for the `P12_PASSWORD` value if you added directly the `.p12` file content as a base64 secret).
+- the `secrets.KEY_PASSWORD` isn't mandatory (it may depends on the `.key` file).
+- the `Developer Id certificates name` looks like this: `Org or User name (xxxxxxxxxx)`.
+- the `BUNDLE_ID` can be any value.
+
+**Note that the Notary tools have been updated on Apple.** 
+
+Previously the action below was used in the process but has been removed from the marketplace:
 
 ```
 - name: "Notarize Release Build PKG"
@@ -128,13 +137,6 @@ I created [this one](https://github.com/GuillaumeFalourd/notary-tools) to substi
     staple: true
     xcode_path: '/Applications/Xcode.app'
 ```
-
-**Note that in this workflow example:**
-
-- the `secrets.P12_PASSWORD` and the `secrets.KEYCHAIN_PASSWORD` can use any value (it would be different for the `P12_PASSWORD` value if you added directly the `.p12` file content as a base64 secret).
-- the `secrets.KEY_PASSWORD` isn't mandatory (it may depends on the `.key` file).
-- the `Developer Id certificates name` looks like this: `Org or User name (xxxxxxxxxx)`.
-- the `BUNDLE_ID` can be any value.
 
 ## 🤝 Contribution
 
